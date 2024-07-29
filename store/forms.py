@@ -70,7 +70,7 @@ class ToolForm(FlaskForm):
         user_address = Address.query.filter(Address.user_id == current_user.id).first()
         user_postcode = user_address.postcode
         postcode=''
-        api_key = 'AIzaSyDyrFnIprNCQ3-sChnwRq74w8Df0K-SmXs'
+        api_key = ''
 
         base_url = "https://maps.googleapis.com/maps/api/geocode/json"
         endpoint = f"{base_url}?address={location.data}&key={api_key}"
