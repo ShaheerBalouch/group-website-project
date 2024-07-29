@@ -1,0 +1,9 @@
+Dear {{ customer.name }},
+
+The owner of the tool has denied that the tool, {{ tool.title }}, has been returned.
+
+Please ensure that you have returned the tool to the owner before claiming that the tool has been returned.
+
+Sincerely,
+
+The Tools4Tools Team.

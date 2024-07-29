@@ -1,0 +1,11 @@
+Dear {{ owner.name }},
+
+User {{ customer.name }} has said that they have returned the tool, {{ tool.name }}
+
+To open a new page and confirm that the tool has, or has not, been returned, click on the link below:
+
+{{ url_for('tool_returned', token=token, tool_id=tool.id, customer_id=customer.id, _external=True) }}
+
+Sincerely,
+
+The Tools4Tools Team.

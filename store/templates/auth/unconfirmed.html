@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1 class="large_title"> To access this feature you must first confirm your email account! </h1>
+
+<p>You have received a confirmation link during the registration process. If you need a new link click on the link below:</p>
+
+<a class='links' href="{{ url_for('resend_confirmation_email') }}">Send new confirmation email</a>
+{% endblock %}

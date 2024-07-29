@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/borrow-history.css') }}">
+{% endblock %}
+
+{% block content %}
+    {% if borrow_status %}
+        {% if active_tools_details %}
+            <h2 class="borrow-history-title">Active Tools</h2>
+            {% for history_element, tool, owner, date, customer in active_tools_details %}
+                <div class="borrow-element-container">
+                  <div class="list-container">
+                      <ul class="borrow-element-list">
+                          <li class="image-container list-item">
+                              {% if tool.images|length == 0 %}
+                              <img class="tool-img" src="{{ url_for('static', filename='img/default/default_tool.png') }}">
+                              {% else %}
+                              <img class="tool-img" src="data:{{ tool.images[0].mimetype }};base64, {{ tool.images[0].img }}">
+                              {% endif %}
+                          </li>
+                          <li class="list-item">
+                              <div>Tool:</div>
+                              <div><a class="links h-link" href="{{ url_for('tool', tool_id=tool.id) }}">{{tool.title}}</a></div>
+                          </li>
+                          <li class="list-item">
+                              Deposit&nbsppaid:
+                              <br>£{{ history_element.deposit_paid }}
+                          </li>
+                          <li class="list-item">
+                              Tool&nbspowner:
+                              <br>{{ owner.name }}
+                          </li>
+                          <li class="list-item">
+                              Borrow&nbspstatus:
+                              <br>{% if history_element.active_status %} Active {% else %} Returned {% endif %}
+                          </li>
+                          <li class="list-item">
+                              Borrow&nbspdate:
+                              <br>{{ date }}
+                          </li>
+                      </ul>
+                      {% if not history_element.active_status %}
+                        <a class='button' href="{{ url_for('request_tool', tool_id=tool.id) }}">Borrow&nbspagain</a>
+                      {% elif history_element.active_status %}
+                        <a class='button' href="{{ url_for('return_tool', tool_id=tool.id, user_id=owner.id, customer_id=customer.id) }}">Returned&nbspthe&nbsptool?&nbspClick&nbspHere</a>
+                      {% endif %}
+                  </div>
+              </div>
+            {% endfor %}
+        {% endif %}
+        {% if previous_tools_details %}
+            <h2 class="borrow-history-title">Previously Borrowed Tools</h2>
+            {% for history_element, tool, owner, date, customer in previous_tools_details %}
+                  <div class="borrow-element-container">
+                    <div class="list-container">
+                        <ul class="borrow-element-list">
+                            <li class="image-container list-item">
+                                {% if tool.images|length == 0 %}
+                                <img class="tool-img" src="{{ url_for('static', filename='img/default/default_tool.png') }}">
+                                {% else %}
+                                <img class="tool-img" src="data:{{ tool.images[0].mimetype }};base64, {{ tool.images[0].img }}">
+                                {% endif %}
+                            </li>
+                            <li class="list-item">
+                                <div>Tool:</div>
+                                <div><a class="links h-link" href="{{ url_for('tool', tool_id=tool.id) }}">{{tool.title}}</a></div>
+                            </li>
+                            <li class="list-item">
+                                Deposit&nbsppaid:
+                                <br>£{{ history_element.deposit_paid }}
+                            </li>
+                            <li class="list-item">
+                                Tool&nbspowner:
+                                <br>{{ owner.name }}
+                            </li>
+                            <li class="list-item">
+                                Borrow&nbspstatus:
+                                <br>{% if history_element.active_status %} Active {% else %} Returned {% endif %}
+                            </li>
+                            <li class="list-item">
+                                Borrow&nbspdate:
+                                <br>{{ date }}
+                            </li>
+                        </ul>
+                        {% if not history_element.active_status %}
+                          <a class='button' href="{{ url_for('request_tool', tool_id=tool.id) }}">Borrow&nbspagain</a>
+                        {% elif history_element.active_status %}
+                          <a class='button' href="{{ url_for('return_tool', tool_id=tool.id, user_id=owner.id, customer_id=customer.id) }}">Returned&nbspthe&nbsptool?&nbspClick&nbspHere</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% else %}
+        You haven't borrowed any tools yet!
+    {% endif %}
+{% endblock %}

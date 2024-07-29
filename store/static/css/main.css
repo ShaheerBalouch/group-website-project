@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-image: url('../img/Patterns/pattern2.png');
+    color: #F29F05;
+    margin-bottom: 5rem;
+}
+
+#header {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+    /* margin-top: 1.5rem; */
+}
+
+.wrapper {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 5rem;
+    height: 100%;
+    background-color: #262626;
+    
+}
+
+.navbar {
+    height: 10rem;
+    display: flex;
+
+}
+
+.logo_wrapper {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.logo_wrapper a {
+    display: block;
+    height: 100%;
+}
+
+.logo_wrapper img {
+    height: 100%;
+
+}
+
+.navbar_list {
+    list-style: none;
+    justify-content: flex-end;
+    display: flex;
+    width: 100%;
+    padding: 0;
+}
+
+.navbar_item {
+    padding-left: 2rem;
+    align-self: flex-start;
+}
+
+.navbar_item a {
+    color: #F29F05;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.current_page a{
+    color: #966a19;
+    text-decoration: underline;
+}
+
+.large_title {
+    margin: 0;
+}
+
+.content {
+    padding-bottom: 3rem;
+}
+
+.links {
+    color: white;
+}
+
+/* .general-flash-msg {
+
+} */
+
+.flashed_message {
+    text-align: center;
+    padding-bottom: 1rem;
+    color: #F29F05;
+}
+
+.counter {
+    background-color: red;
+    color: white;
+    border-radius: 2px;
+    padding: 5px !important;
+}
+
+
+footer {
+    text-align: center;
+    background-color: black;
+    padding:1.5rem;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+footer a{
+    text-decoration: none;
+    color: white;
+
+}

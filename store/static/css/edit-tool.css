@@ -1,0 +1,34 @@
+ .prev-image-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 1rem;
+    justify-content: center;
+    width: 100%;
+ }
+
+
+.prev-image {
+    border: 1px solid black;
+    background-image: url('../img/Patterns/pattern4.png');
+
+}
+
+ .tool-img {
+    width: 100%;
+    height: 10rem;
+    object-fit: contain;
+    /* height: 100%; */
+}
+
+
+.image-button {
+    width: 33vw;
+}
+
+.remove-btn {
+    margin-top:0.2rem;
+}
+
+.more-picture {
+    margin-bottom: 0.2rem;
+}

@@ -1,0 +1,1 @@
+The user, {{ user.name }} flagged the tool {{ tool.title }} for {{ flag.category }}.

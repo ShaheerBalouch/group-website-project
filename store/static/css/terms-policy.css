@@ -1,0 +1,40 @@
+h2 {
+    margin-top: 0;
+    padding-top:2rem;
+    color: white;
+}
+
+.table-content {
+    padding: 0;
+    list-style: none;
+    margin-top: 0;
+}
+
+.table-content h2 {
+
+}
+
+.table-content li {
+    padding: 0 1rem 0 1rem;
+
+}
+
+.table-content li a {
+    color: #F29F05;
+}
+
+p {
+    padding: 0 1rem 0 1rem;
+}
+
+.agreement-link {
+   color: white;
+}
+
+li {
+    padding-top: 0.5rem;
+}
+
+h1 {
+    color: white;
+}

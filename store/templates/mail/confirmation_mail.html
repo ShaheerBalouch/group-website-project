@@ -1,0 +1,11 @@
+<p>Dear {{ user.name }},</p>
+<br>
+<p>Welcome to Tools 4 Tools!</p>
+<br>
+<p>To confirm your account please click on the link below:</p>
+<br>
+<a href="{{ url_for('confirm', token=token, _external=True) }}">Click here</a>
+<br>
+Sincerely,
+<br>
+The Tools4Tools team.

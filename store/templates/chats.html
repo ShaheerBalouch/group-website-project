@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/borrow.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+
+{% block navbar %}
+<ul class="navbar_list">
+    <li class="navbar_item"><a href="{{ url_for('home') }}">Home</a></li>
+    <li class="navbar_item"><a href="{{ url_for('borrow') }}">Borrow</a></li>
+    <li class="navbar_item"><a href="{{ url_for('post_tool') }}">Lend</a></li>
+    {% if current_user.is_authenticated %}
+    <li class="navbar_item"><a href="{{ url_for('profile') }}">Profile</a></li>
+    <li class="navbar_item"><a href="{{ url_for('logout') }}">Logout</a></li>
+    <li class="navbar_item"><a href="{{ url_for('notifications') }}">Notifications </i><sup class="counter">{{ count }}</sup></a></li>
+    <li class="navbar_item"><a href="{{ url_for('chats') }}">CHATS</a></li>
+    {% else %}
+    <li class="navbar_item"><a href="{{ url_for('login') }}">Login</a></li>
+    <li class="navbar_item"><a href="{{ url_for('register') }}">Register</a></li>
+    {% endif %}
+</ul>
+{% endblock %}
+
+{% block content %}
+
+<ul class="chat-list">
+  {% for chat_user in chat_users %}
+  <a class="chat-link" href='/private_chat/{{ chat_user.id }}'>
+      <li class="owner-profile-pic"><img src="data:{{ chat_user.image.mimetype }};base64, {{ chat_user.image.img }}" alt=""></li>
+      <li class="chat-element">{{ chat_user.name }}</li>
+  </a>
+  {% endfor %}
+</ul>
+
+
+   {% endblock content %}

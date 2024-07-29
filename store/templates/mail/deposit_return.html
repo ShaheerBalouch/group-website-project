@@ -1,0 +1,25 @@
+<h3>Dear {{ customer.name }},</h3>
+
+<p>Thank you for rating the tool, <b>{{ tool.title }}</b>. Here is a summary of the deposit amount to be returned to you:</p>
+
+<p><b>Original deposit amount paid:</b> £ {{ depos }}</p>
+
+<p><b>Amount to be returned to you:</b> £ {{ deposit_return }}</p>
+
+{% if status %}
+<p>Your deposit should be returned within 5-10 working days</p>
+{% endif %}
+
+<p><b>Reason behind amount returned:</b> {{ reason }}</p>
+
+<p><b>Note</b>: in all scenarios a 3% fee is taken by our platform for providing this service to you!</p>
+
+{% if has_notes %}
+<p><b>Note left by the tool owner:</b> {{ notes }}</p>
+{% endif %}
+
+<p>If you have any questions or concerns regarding the returned deposit amount please contact us!</p>
+
+<p>Sincerely,</p>
+
+<p>The Tools4Tools Team.</p>

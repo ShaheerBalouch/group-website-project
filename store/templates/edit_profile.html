@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/borrow.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<form method="POST" action="" enctype="multipart/form-data">
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Google Maps JavaScript library -->
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDyrFnIprNCQ3-sChnwRq74w8Df0K-SmXs"></script>
+<div class="lend-form-container">
+	{{ form.csrf_token }}
+
+  <br> {{form.image.label}}{{form.image}} {% for error in form.image.errors %}<span style="color: red;">[{{ error }}]</span>
+	{% endfor %}
+  <br> {{form.description.label}}{{form.description(class='form-field')}} {% for error in form.description.errors %}<span style="color: red;">[{{ error }}]</span>
+	{% endfor %}
+  <br> {{form.email.label}}{{form.email(class='form-field')}} {% for error in form.email.errors %}<span style="color: red;">[{{ error }}]</span>
+	{% endfor %}
+  <br> {{form.name.label}}{{form.name(class='form-field')}} {% for error in form.name.errors %}<span style="color: red;">[{{ error }}]</span>
+	{% endfor %}
+	<br> {{ form.address_line_1.label}}{{ form.address_line_1(class='form-field') }} {% for error in form.address_line_1.errors %}<span style="color: red;">[{{ error }}]</span>
+	{% endfor %}
+	<script>
+var searchInput = 'search_input';
+
+$(document).ready(function () {
+ var autocomplete;
+ var input = document.getElementById(searchInput);
+ autocomplete = new google.maps.places.Autocomplete(input, {
+	componentRestrictions:{ country:["gb"]},
+  types: ['geocode'],
+  /*componentRestrictions: {
+   country: "USA"
+  }*/
+ });
+ 			input.addEventListener("change", function(){
+			input.value = "";
+	});
+
+ google.maps.event.addListener(autocomplete, 'place_changed', function () {
+  var near_place = autocomplete.getPlace();
+	
+ });
+});
+</script>
+	<br> {{ form.city.label }}{{ form.city(class='form-field') }}
+
+  <input class="post-submit-btn pfp-edit-btn" type="submit" value="Submit">
+</div>
+</form>
+
+{% endblock content %}

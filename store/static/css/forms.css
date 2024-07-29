@@ -1,0 +1,233 @@
+.form-field {
+    display: block;
+    outline: none;
+    border: 1px solid black;
+    padding: 8px 10px;
+    width: 100%;
+    /* max-width: 23rem; */
+    min-width: 17.5rem;
+    border-radius: 5px;
+}
+
+
+label {
+    align-self: flex-start;
+    padding-bottom: 0.3rem;
+    color: black;
+}
+
+#tool_category {
+    list-style: none;
+    align-self: flex-start;
+    padding-left: 0;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 25rem;
+    min-width: 19.5rem;
+    margin: 0 auto 0 auto;
+    background-color: #F29F05;
+    padding: 2rem;
+    border-radius: 5px;
+}
+
+.condition-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 40rem;
+    min-width: 19.5rem;
+    margin: 0 auto 0 auto;
+    background-color: #F29F05;
+    padding: 2rem;
+    border-radius: 5px;
+}
+
+.lend-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 50rem;
+    min-width: 19.5rem;
+    margin: 0 auto 0 auto;
+    background-color: #F29F05;
+    padding: 2rem;
+    border-radius: 5px;
+}
+
+.large_title {
+    color: black;
+    margin-bottom: 1rem;
+}
+
+.form-submit-btn {
+    display: block;
+    width: 33vw;
+    padding: 1rem;
+    max-width: 23rem;
+    min-width: 17.5rem;
+    /* font-family: 'Montserrat', sans-serif; */
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.post-submit-btn {
+    display: block;
+    padding: 1rem;
+    width: 100%;
+    max-width: 50rem;
+    min-width: 17.5rem;
+    /* font-family: 'Montserrat', sans-serif; */
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.terms-conditions{
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+    width: 33vw;
+    max-width: 21rem;
+    min-width: 17.5rem;
+    display: flex;
+    color: black;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.terms-conditions div {
+    margin-left: 1rem;
+}
+
+#agree_terms {
+    height: 2rem;
+    margin: 0.5rem 0 0.5rem 0;
+}
+
+.form-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: black;
+}
+
+
+.search-container {
+    display: flex;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    margin-bottom: .5rem;
+}
+.filter-container {
+    padding-left: 5rem;
+    padding-right: 5rem;
+    display: flex;
+   
+}
+
+.sortby, .filterby {
+    flex-grow: 1;
+}
+
+.sortby form .form-select,
+.sortby .form-select,
+.filterby form .form-select,
+.filterby .form-select{
+    width: 100%;
+    border: 1px solid black;
+    padding: 8px 10px;
+    border-radius: 5px;
+}
+
+.search-field {
+    display: block;
+    outline: none;
+    border: 1px solid black;
+    padding: 8px 10px;
+    border-radius: 5px;
+    flex-grow: 2;
+
+}
+
+.search-submit-btn {
+    display: block;
+    flex-grow: 1;
+    padding: 0.5rem;
+    background-color: #F29F05;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-submit-btn:hover {
+    background-color: black;
+    color: white;
+}
+
+input[type=file]::file-selector-button {
+    display: block;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    background-color: black;
+}
+
+.amount {
+    color: black;
+    padding-bottom:1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+#condition {
+    padding: 0;
+    list-style: none;
+}
+
+.condition-title {
+    margin: 0;
+    text-align: center;
+    padding-bottom:1rem;
+}
+
+.pfp-edit-btn {
+    margin-top:1rem;
+}
+
+.flag-category {
+    width: 100%;
+}
+
+.flag-title {
+    margin-top:0;
+}
+
+.flag-btn {
+    margin-top:1rem;
+    min-width: 100%;
+}
+
+#rating {
+    list-style: none;
+}
+
+#rating li, #rating li label {
+    color: #F29F05;
+}
+
+.review-label {
+    color: #F29F05;
+}

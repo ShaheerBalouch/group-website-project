@@ -1,0 +1,95 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+{% endblock %}
+
+{% block navbar %}
+<ul class="navbar_list">
+    <li class="navbar_item"><a href="{{ url_for('home') }}">Home</a></li>
+    <li class="navbar_item"><a href="{{ url_for('borrow') }}">Borrow</a></li>
+    <li class="navbar_item"><a href="{{ url_for('post_tool') }}">Lend</a></li>
+    {% if current_user.is_authenticated %}
+    <li class="navbar_item"><a href="{{ url_for('profile') }}">Profile</a></li>
+    <li class="navbar_item"><a href="{{ url_for('logout') }}">Logout</a></li>
+    {% else %}
+    <li class="navbar_item"><a href="{{ url_for('login') }}">Login</a></li>
+    <li class="navbar_item current_page"><a href="{{ url_for('register') }}">REGISTER</a></li>
+    {% endif %}
+</ul>
+{% endblock %}
+
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">
+    </script>
+
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+        rel="stylesheet" type="text/css" />
+
+  <style>
+  .ui-autocomplete {
+    max-height: 100px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
+  </style>
+
+
+<form method="POST">
+    <div class="form-container">
+    <h1 class="large_title">REGISTRATION&nbsp;FORM</h1>
+    {{ form.hidden_tag() }}
+    {{ form.name.label() }}{{ form.name(class='form-field') }}
+    {% for error in form.name.errors %}<span style="color: red;">[{{ error }}]</span><br>
+    {% endfor %}
+
+    {{ form.email.label() }}{{ form.email(class='form-field') }}
+    {% for error in form.email.errors %}<span style="color: red;">[{{ error }}]</span><br>
+    {% endfor %}
+
+    {{ form.password.label() }}{{ form.password(class='form-field') }}
+    {% for error in form.password.errors %}<span style="color: red;">[{{ error }}]</span><br>
+    {% endfor %}
+
+    {{ form.confirm_password.label }}{{ form.confirm_password(class='form-field') }}
+    {% for error in form.confirm_password.errors %}<span style="color: red;">[{{ error }}]</span><br>
+    {% endfor %}
+
+    {{ form.age.label() }}{{ form.age(class='form-field') }}
+    {% for error in form.age.errors %}<span style="color: red;">[{{ error }}]</span><br>
+    {% endfor %}
+
+    {{ form.postcode.label() }}{{ form.postcode(class='form-field') }}
+
+    <script>
+$( function() {
+  var availableTags = [
+      {% for postcode in postcodes %}
+          "{{postcode}}",
+      {% endfor %}
+  ];
+  $( "#auto_complete" ).autocomplete({
+    source: availableTags
+  });
+} );
+</script>
+
+    {% for error in form.postcode.errors %}<span style="color: red;">[{{ error }}]</span><br>
+    {% endfor %}
+
+    <div class="terms-conditions">
+      {{ form.agree_terms() }}
+      <div>I agree to and accept the <a href="{{ url_for ('terms') }}">Terms and Conditions</a></div>
+    </div>
+    
+    {{ form.submit(class='form-submit-btn') }}
+
+    </div>
+</form>
+{% endblock %}

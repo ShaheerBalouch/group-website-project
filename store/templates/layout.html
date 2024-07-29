@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block head %}
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock %}Tools for Tools</title>
+
+        <link rel="shortcut icon" type="image/jpg" href="{{ url_for('static', filename='img/support.png') }}"/>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+       {% endblock %}
+    </head>
+
+    <body>
+
+        <div id="header" class="wrapper">
+        <div class="navbar">
+            <div class="logo_wrapper">
+                <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='img/logo-resized1.png') }}" alt="business-logo"></a>
+            </div>
+            {% block navbar %}
+            <ul class="navbar_list">
+                <li class="navbar_item"><a href="{{ url_for('home') }}">Home</a></li>
+                <li class="navbar_item"><a href="{{ url_for('borrow') }}">Borrow</a></li>
+                <li class="navbar_item"><a href="{{ url_for('post_tool') }}">Lend</a></li>
+                {% if current_user.is_authenticated %}
+                <li class="navbar_item"><a href="{{ url_for('profile') }}">Profile</a></li>
+                <li class="navbar_item"><a href="{{ url_for('logout') }}">Logout</a></li>
+                <li class="navbar_item"><a href="{{ url_for('notifications') }}">Notifications </i><sup class="counter">{{ count }}</sup></a></li>
+                <li class="navbar_item"><a href="{{ url_for('chats') }}">Chats</a></li>
+                {% else %}
+                <li class="navbar_item"><a href="{{ url_for('login') }}">Login</a></li>
+                <li class="navbar_item"><a href="{{ url_for('register') }}">Register</a></li>
+                {% endif %}
+            </ul>
+            {% endblock %}
+        </div>
+        </div>
+
+        {% for message in get_flashed_messages() %}
+        <div class="wrapper flashed_message">{{ message }}</div>
+        {% endfor %}
+
+        <div class="content wrapper">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+
+    <footer>
+        <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a>
+    </footer>
+</html>

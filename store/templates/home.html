@@ -1,0 +1,123 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+<script src="{{ url_for('static', filename='javascript/general.js') }}"></script>
+{% endblock %}
+
+
+{% block navbar %}
+<ul class="navbar_list">
+    <li class="navbar_item current_page"><a href="{{ url_for('home') }}">HOME</a></li>
+    <li class="navbar_item"><a href="{{ url_for('borrow') }}">Borrow</a></li>
+    <li class="navbar_item"><a href="{{ url_for('post_tool') }}">Lend</a></li>
+    {% if current_user.is_authenticated %}
+    <li class="navbar_item"><a href="{{ url_for('profile') }}">Profile</a></li>
+    <li class="navbar_item"><a href="{{ url_for('logout') }}">Logout</a></li>
+    <li class="navbar_item"><a href="{{ url_for('notifications') }}">Notifications </i><sup class="counter">{{ count }}</sup></a></li>
+    <li class="navbar_item"><a href="{{ url_for('chats') }}">Chats</a></li>
+    {% else %}
+    <li class="navbar_item"><a href="{{ url_for('login') }}">Login</a></li>
+    <li class="navbar_item"><a href="{{ url_for('register') }}">Register</a></li>
+    {% endif %}
+</ul>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="hero-image-wrapper">
+  <img class='hero-image' src="{{ url_for('static', filename='img/hero-image3.jpg') }}" alt="hero-image">
+  <div class="title-container">
+      <div class="hero-title">
+          <p class="primary-hero-title">Local tools</p>
+          <p class="secondary-hero-title">Little prices</p>
+      </div>
+  </div>
+</div>
+
+
+{% if distances %}
+<div class="tools-selection">
+   <ul class="tools-list">
+
+      {% for tool,owner,distance,rating in tools_owners_distances_avRating %}
+        <div class="tool-item-container">
+          <div class="tool-header">
+            <li class="owner-profile-pic"><a id="{{ loop.index }}" href="javascript:void(0)" onClick="makeVisible(this.id)"><img src="data:{{ owner.image.mimetype }};base64, {{ owner.image.img }}" alt=""></a></li>
+            <ul id="pfp-info{{ loop.index }}" class="user-information user-information{{ loop.index }}">
+              <a id="{{ loop.index }}" class="close" href="javascript:void(0)" onClick="makeInvisible(this.id)">&times;</a>
+              <li class="owner-name">{{ owner.name|capitalize  }}</li>
+              {% if rating == -1 %}
+              <li>Rating: No Reviews </li>
+              {% else %}
+              <li>Rating:   {{ "%.1f"|format(rating) }}</li>
+              {% endif %}
+              <li class="visit-profile"><a href="{{ url_for('user_profile', owner_id=owner.id) }}" class="links">Visit profile</a></li>
+              <div class="button-style"><a href="/create_room/{{ owner.id }}" class="message-link">Message</a></div>
+            </ul>
+            <li class="tool-title"><a class="links" href="{{ url_for('tool', tool_id=tool.id) }}">{{tool.title}} </a></li>
+          </div>
+          <li><p>Distance: {{ "%.1f"|format(distance) }}km away from you<p></li>
+          {% if tool.images|length == 0 %}
+          <li class="tool-img-container"><img class="tool-img" src="{{ url_for('static', filename='img/default/default_tool.png') }}"></li>
+          {% else %}
+          <li class="tool-img-container"><img class="tool-img" src="data:{{ tool.images[0].mimetype }};base64, {{ tool.images[0].img }}"></li>
+          {% endif %}
+
+
+
+      </div>
+      {% endfor %}
+
+{% else %}
+
+      <div class="tools-selection">
+         <ul class="tools-list">
+
+            {% for tool, owner, rating in tools_owners_avRating %}
+              <div class="tool-item-container">
+                <div class="tool-header">
+                  <li class="owner-profile-pic"><a id="{{ loop.index }}" href="javascript:void(0)" onClick="makeVisible(this.id)"><img src="data:{{ owner.image.mimetype }};base64, {{ owner.image.img }}" alt=""></a></li>
+                  <ul id="pfp-info{{ loop.index }}" class="user-information user-information{{ loop.index }}">
+                    <a id="{{ loop.index }}" class="close" href="javascript:void(0)" onClick="makeInvisible(this.id)">&times;</a>
+                    <li class="owner-name">{{ owner.name|capitalize  }}</li>
+                    {% if rating == -1 %}
+                    <li>Rating: No Reviews </li>
+                    {% else %}
+                    <li>Rating:   {{ "%.1f"|format(rating) }}</li>
+                    {% endif %}
+                    <li class="visit-profile"><a href="{{ url_for('user_profile', owner_id=owner.id) }}" class="links">Visit profile</a></li>
+                    <div class="button-style"><a href="/create_room/{{ owner.id }}" class="message-link">Message</a></div>
+                  </ul>
+                  <li class="tool-title"><a class="links" href="{{ url_for('tool', tool_id=tool.id) }}">{{tool.title}} </a></li>
+                </div>
+                {% if tool.images|length == 0 %}
+                <li class="tool-img-container"><img class="tool-img" src="{{ url_for('static', filename='img/default/default_tool.png') }}"></li>
+                {% else %}
+                <li class="tool-img-container"><img class="tool-img" src="data:{{ tool.images[0].mimetype }};base64, {{ tool.images[0].img }}"></li>
+                {% endif %}
+
+
+            </div>
+            {% endfor %}
+
+{% endif %}
+
+
+    </ul>
+</div>
+
+<!-- <table>
+
+
+  <tr>
+    <th></th>
+  </tr>
+
+
+
+</table> -->
+<a href="{{ url_for('borrow') }}"><button type="button">View All Tools</button></a>
+{% endblock %}

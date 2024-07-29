@@ -1,0 +1,11 @@
+Dear {{ user.name }},
+
+Welcome to Tools 4 Tools!
+
+To confirm your account please click on the link below:
+
+{{ url_for('confirm', token=token, _external=True) }}
+
+Sincerely,
+
+The Tools4Tools team.

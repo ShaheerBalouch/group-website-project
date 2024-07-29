@@ -1,0 +1,9 @@
+Dear {{ customer.name }},
+
+The owner of the tool has confirmed that the tool, {{ tool.title }}, has been returned.
+
+Depending on the condition the tool was returned in, your deposit should be returned to you soon (minus charge fee).
+
+Sincerely,
+
+The Tools4Tools Team.

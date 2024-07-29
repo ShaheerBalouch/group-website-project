@@ -1,0 +1,11 @@
+Dear {{ customer.name }},
+
+Thank you for rating the tool, {{ tool.name }}
+
+Your deposit, £{{ deposit_return }}, should be returned within 5-10 working days
+
+The deposit returned is due to the owner's rating of the condition of the tool when it was returned (minus 3% commission).
+
+Sincerely,
+
+The Tools4Tools Team.

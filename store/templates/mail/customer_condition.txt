@@ -1,0 +1,11 @@
+Dear {{ customer.name }},
+
+The owner has reported the condition of the tool, {{ tool.name }}
+
+To collect your deposit, please report the condition the tool was returned in, via the link below:
+
+{{ url_for('customer_condition', customer_id=customer.id, owner_id=owner.id, tool_id=tool.id, rating=rating, token=token, _external=True) }}
+
+Sincerely,
+
+The Tools4Tools Team.

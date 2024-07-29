@@ -1,0 +1,46 @@
+.success-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 60%;
+    border: 1px solid #F29F05; 
+    border-radius: 5px;
+    padding: 2rem;
+    margin: 0 auto 0 auto;
+}
+
+
+.attention {
+    color: red;
+}
+
+.check-img {
+    max-width: 7rem;
+}
+
+.message-link {
+    color: white;
+    text-decoration: none;
+}
+
+.button-style {
+  margin-top: 0.6rem;
+  background: #5E5DF0;
+  border-radius: 999px;
+  box-shadow: #5E5DF0 0 10px 20px -10px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  word-break: break-word;
+  border: 0;
+}

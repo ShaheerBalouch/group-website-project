@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/borrow.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tool-page.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/edit-tool.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<form method="POST" action="" enctype="multipart/form-data">
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Google Maps JavaScript library -->
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDyrFnIprNCQ3-sChnwRq74w8Df0K-SmXs"></script>
+
+	<div class="lend-form-container">
+
+	{{ form.csrf_token }}
+
+	<br> {{form.title.label}}{{form.title(class='form-field')}} &nbsp	{% for error in form.title.errors %}<span style="color: red;">[{{ error }}]</span><br>
+	{% endfor %}
+
+	<p>Current Pictures:</p>
+	{% if tool.images|length == 0 %}
+	<p>You haven't uploaded any picture for your item yet!</p>
+	{% else %}
+
+	<div class="image-section-edit">
+
+	{% if tool.images|length == 0 %}
+	<p>You haven't uploaded any picture for your item yet!</p>
+	{% elif tool.images|length == 1 %}
+    <img class="tool-img" src="data:{{ tool.images[0].mimetype }};base64, {{ tool.images[0].img }}">
+	{% else %}
+    <div class="slideshow-container">
+      {% for img in tool.images %}
+      <div class="mySlides fade">
+        <div class="numbertext">{{ loop.index }} / {{ tool.images|length }}</div>
+        <img class="slider-img" src="data:{{ img.mimetype }};base64, {{ img.img }}">
+	  	<a class="edit-button remove-btn" href="{{ url_for('remove_image', img_id=img.id) }}">Remove picture</a>
+      </div>
+      {% endfor %}
+      <!-- Next and previous buttons -->
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+	{% endif %}
+	</div>
+
+	{% endif %}
+	<p class="more-picture">Add more pictures:</p>
+	{{form.images(class_='image-button')}}&nbsp{% for error in form.images.errors %}<span style="color: red;">[{{ error }}]</span><br>
+	{% endfor %}
+
+
+	<br> {{form.description.label}}{{form.description(class='form-field')}} &nbsp	{% for error in form.description.errors %}<span style="color: red;">[{{ error }}]</span><br>
+	{% endfor %}
+
+ 	<br> {{form.location.label}}{{form.location(class='form-field')}}
+
+	<script>
+	  var searchInput = 'search_input3';
+
+	  $(document).ready(function () {
+	   var autocomplete;
+		 var input = document.getElementById(searchInput);
+	   autocomplete = new google.maps.places.Autocomplete(input, {
+	  	componentRestrictions:{ country:["gb"]},
+	    types: ['geocode'],
+	    /*componentRestrictions: {
+	     country: "USA"
+	    }*/
+	   });
+		 input.addEventListener("change", function(){
+	        input.value = "";
+	    });
+
+	   google.maps.event.addListener(autocomplete, 'place_changed', function () {
+	    var near_place = autocomplete.getPlace();
+	   });
+	  });
+	  </script>
+
+	&nbsp	{% for error in form.location.errors %}<span style="color: red;">[{{ error }}]</span><br>
+	{% endfor %}
+
+  	<br> {{form.deposit.label}}{{form.deposit(class='form-field')}}&nbsp{% for error in form.deposit.errors %}<span style="color: red;">[{{ error }}]</span>
+	{% endfor %}
+
+  	<input class="post-submit-btn" type="submit" value="Submit">
+
+	</div>
+</form>
+
+
+<script src="{{ url_for('static', filename='javascript/general.js') }}"></script>
+
+{% endblock content %}

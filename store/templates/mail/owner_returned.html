@@ -1,0 +1,11 @@
+<p>Dear {{ owner.name }},</p>
+
+<p>User {{ customer.name }} has said that they have returned the tool, {{ tool.name }}</p>
+
+<p>To open a new page and confirm that the tool has, or has not, been returned, click on the link below:</p>
+
+<p><a href="{{ url_for('tool_returned', token=token, _external=True) }}">Tool has been returned</a></p>
+
+<p>Sincerely,</p>
+
+<p>The Tools4Tools Team.</p>

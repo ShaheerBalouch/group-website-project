@@ -1,0 +1,11 @@
+<p>Dear {{ customer.name }},</p>
+
+<p>The owner has reported the condition of the tool, {{ tool.name }}</p>
+
+<p>To collect your deposit, please report the condition the tool was returned in, via the link below:</p>
+
+<p><a href="{{ url_for('customer_condition', token=token, _external=True) }}">Rate tool</a></p>
+
+<p>Sincerely,</p>
+
+<p>The Tools4Tools Team.</p>

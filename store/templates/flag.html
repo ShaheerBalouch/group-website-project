@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<form method="POST">
+  <h2 class="flag-title">Select flag category:</h2>
+  {{ form.hidden_tag() }}
+  {{ form.category(class="flag-category") }}
+  {{form.submit(class="search-submit-btn flag-btn")}}
+</form>
+
+{% endblock %}
