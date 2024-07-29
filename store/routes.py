@@ -183,7 +183,7 @@ def home():
 
 
             #Get coordinates of current user
-        api_key = 'AIzaSyDyrFnIprNCQ3-sChnwRq74w8Df0K-SmXs'
+        api_key = ''
         gmaps = googlemaps.Client(key=api_key)
 
         base_url = "https://maps.googleapis.com/maps/api/geocode/json"
